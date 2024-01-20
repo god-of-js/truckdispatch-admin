@@ -21,11 +21,6 @@ const TripsLayout = lazy(() => import('../layouts/TripsLayout'));
 const ChatLayout = lazy(() => import('../layouts/ChatLayout'));
 
 // Auth
-const RegistrationPage = lazy(() => import('../pages/auth/RegistrationPage'));
-const VerifyPhonePage = lazy(() => import('../pages/auth/VerifyPhonePage'));
-const SelectUsertypePage = lazy(
-  () => import('../pages/auth/SelectUsertypePage'),
-);
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'));
 const ForgotPasswordPage = lazy(
   () => import('../pages/auth/ForgotPasswordPage'),
@@ -186,25 +181,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        path: 'join',
-        element: <SelectUsertypePage />,
-      },
-      {
-        path: 'join/:userType',
-        element: <RegistrationPage />,
-      },
-      {
-        path: 'verify-phone',
-        element: (
-          <ProtectedRoute
-            allowNavigationFunc={resetPasswordAccessChecks}
-            reRouteUrl="/auth/login"
-          >
-            <VerifyPhonePage />
-          </ProtectedRoute>
-        ),
-      },
       {
         path: 'login',
         element: <LoginPage />,

@@ -2,11 +2,10 @@ import React, { lazy, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { loginUser } from '../../modules/Account';
+import { loginUser } from 'modules/Account';
 
 import { toAnyAction } from 'utils/helpers';
 import loginSchema from 'utils/validations/loginSchema';
-import NotifyUsersFromFirebase from 'components/auth/NotifyUsersFromFirebase';
 import { getPendingRoute } from 'utils/localStorageMethods';
 
 const UiForm = lazy(() => import('ui/UiForm'));
@@ -30,8 +29,6 @@ export default function LoginPage() {
   );
 
   const [loading, setLoading] = useState(false);
-  const [isNotifyUsertoResetVisible, setIsNotifyUserToResetVisible] =
-    useState(false);
 
   function handleChange(event: { name: string; value: string | null }) {
     setFormData({
@@ -55,17 +52,10 @@ export default function LoginPage() {
         if (msg === 'Phone has not been verified') {
           navigate('/auth/verify-phone');
         }
-        if (msg === 'Login directions have been sent to your email') {
-          setIsNotifyUserToResetVisible(true);
-        }
       })
       .finally(() => {
         setLoading(false);
       });
-  }
-
-  function closeModal() {
-    setIsNotifyUserToResetVisible(false);
   }
 
   return (
@@ -135,10 +125,6 @@ export default function LoginPage() {
             )}
           </UiForm>
         </div>
-        <NotifyUsersFromFirebase
-          onClose={closeModal}
-          isVisible={isNotifyUsertoResetVisible}
-        />
       </StyledAuthContent>
     </AuthLayoutStyling>
   );

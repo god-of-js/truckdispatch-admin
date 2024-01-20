@@ -396,27 +396,27 @@ export default function TripDetailsPage() {
             </UiCard>
             <div className="double-grid">
               <UiCard>
-                    <div className="card-title">Transfer Delivery Order</div>
-                    <p className="description-text">
-                      This is a document that authorizes the release of cargo
-                      from a shipping terminal or port to the authorized
-                      transporter for final delivery.
-                    </p>
-                  <div className="double-items">
-                    {userIsClientBasedUser && !trip.TDO && (
-                      <UiButton
-                        isFullWidth
-                        onClick={() => setUploadTDOIsVisible(true)}
-                      >
-                        Upload TDO
-                      </UiButton>
-                    )}
-                    {!!trip.TDO && (
-                      <a href={trip.TDO} target="_blank">
-                        <UiButton isFullWidth> View TDO</UiButton>
-                      </a>
-                    )}
-                  </div>
+                <div className="card-title">Transfer Delivery Order</div>
+                <p className="description-text">
+                  This is a document that authorizes the release of cargo from a
+                  shipping terminal or port to the authorized transporter for
+                  final delivery.
+                </p>
+                <div className="double-items">
+                  {userIsClientBasedUser && !trip.TDO && (
+                    <UiButton
+                      isFullWidth
+                      onClick={() => setUploadTDOIsVisible(true)}
+                    >
+                      Upload TDO
+                    </UiButton>
+                  )}
+                  {!!trip.TDO && (
+                    <a href={trip.TDO} target="_blank">
+                      <UiButton isFullWidth> View TDO</UiButton>
+                    </a>
+                  )}
+                </div>
               </UiCard>
               {userIsClientBasedUser && trip.status === 'awaiting-bid' && (
                 <UiCard>

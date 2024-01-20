@@ -34,10 +34,7 @@ export default accountSlice.reducer;
 
 export function registerUser(AuthUser: Partial<User>) {
   return async () => {
-    await Api.createUser(AuthUser).then((data) => {
-      saveTokenVerificationInfo(data.smsData);
-      saveAuthSessionId(data.token);
-    });
+    await Api.createUser(AuthUser);
   };
 }
 

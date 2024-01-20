@@ -9,7 +9,6 @@ import './index.scss';
 import './variables.css';
 import getStore from './modules';
 import Loader from 'components/layout/Loader';
-import loadServices from 'utils/loadServices';
 import { registerSW } from 'virtual:pwa-register';
 
 const updateSW = registerSW({
@@ -25,8 +24,6 @@ const updateSW = registerSW({
 
 // @ts-ignore
 window.pxToRem = (px: number, baseSize = 16) => `${px / baseSize}rem`;
-
-window.onload = loadServices;
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
