@@ -22,7 +22,6 @@ interface Props {
    * This field would be queried through the query parameter placed in the header of the table column.
    * Hence, it needs to be the same as the
    */
-  tableTitle: string;
   data: Row[];
   headers: Header[];
   /** This prop accepts a function in case there is a need to filter options available for rows based on data available */

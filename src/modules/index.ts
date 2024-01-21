@@ -9,10 +9,12 @@ import Ratings, { RatingsState } from './Ratings';
 import Trips, { TripState } from './Trips';
 import Vehicle, { VehicleState } from './Vehicle';
 import Verification, { VerificationState } from './Verification';
+import Admins, { AdminsState } from './Admins';
 
 const store = configureStore({
   reducer: {
     account: Account,
+    admins: Admins,
     bid: Bid,
     chat: Chat,
     payment: Payment,
@@ -35,6 +37,7 @@ export interface RootState {
   trips: TripState;
   vehicle: VehicleState;
   verification: VerificationState;
+  admins: AdminsState;
 }
 
 export default function getStore() {

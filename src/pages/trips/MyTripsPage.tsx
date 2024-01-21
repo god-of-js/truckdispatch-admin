@@ -309,17 +309,17 @@ export default function MyTripsPage() {
   }
   function loadTrips() {
     setLoading(true);
-    dispatch(toAnyAction(getTrips({ page, limit: 20, status })))
-      .then((response: TripsPaginatedResponse) => {
-        setTotalPages(response.totalPages);
-        setTotalTrips(response.totalItems);
-        setTotalPendingTrips(response.pending);
-        setTotalInProgressTrips(response.inProgress);
-        setTotalCompletedTrips(response.completed);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    // dispatch(toAnyAction(getTrips({ page, limit: 20, status })))
+    //   .then((response: TripsPaginatedResponse) => {
+    //     setTotalPages(response.totalPages);
+    //     setTotalTrips(response.totalItems);
+    //     setTotalPendingTrips(response.pending);
+    //     setTotalInProgressTrips(response.inProgress);
+    //     setTotalCompletedTrips(response.completed);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
   }
 
   function navigateToTrip(id: string) {
@@ -477,7 +477,6 @@ export default function MyTripsPage() {
         <UiTable
           data={tripsData}
           headers={headers}
-          tableTitle="My Trips"
           onRowClick={navigateToTrip}
           options={dropDownData}
           emptyTableIcon="TruckTick"

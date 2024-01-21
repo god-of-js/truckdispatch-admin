@@ -208,7 +208,6 @@ export default function PaymentsPage() {
       />
       <PageStyling>
         <UiTable
-          tableTitle="Recent Payments"
           data={data}
           headers={headers}
           options={options}
@@ -219,14 +218,12 @@ export default function PaymentsPage() {
           emptyTableAction={emptyTableAction}
         />
         {selectedPayment && (
-          <>
-            <CargoLoadingProof
-              paymentRequest={selectedPayment}
-              isVisible={isViewLoadingProofVisible}
-              onClose={() => setIsViewLoadingProofVisible(false)}
-              updatePaymentRequest={updatePaymentRequest}
-            />
-          </>
+          <CargoLoadingProof
+            paymentRequest={selectedPayment}
+            isVisible={isViewLoadingProofVisible}
+            onClose={() => setIsViewLoadingProofVisible(false)}
+            updatePaymentRequest={updatePaymentRequest}
+          />
         )}
       </PageStyling>
     </>

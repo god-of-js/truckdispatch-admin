@@ -45,6 +45,11 @@ export const transporterRoutes: Route[] = [
 
 export const shipperRoutes: Route[] = [
   {
+    path: '/',
+    name: 'Analytics',
+    iconName: 'ChartSquare',
+  },
+  {
     path: '/my-trips',
     name: 'My Trips',
     iconName: 'TruckTick',
@@ -58,6 +63,11 @@ export const shipperRoutes: Route[] = [
     path: '/profile',
     name: 'Settings',
     iconName: 'Settings',
+  },
+  {
+    path: '/admins',
+    name: 'Admins',
+    iconName: 'Users',
   },
 ];
 

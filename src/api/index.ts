@@ -23,6 +23,7 @@ import ResetUserPassword from 'types/ResetUserPassword';
 import UserFullProfile from 'types/UserFullProfile';
 import Payment from 'types/Payment';
 import WithdrawalDetails from 'types/WithdrawalDetails';
+import Admin from 'types/Admin';
 
 class ApiService {
   createUser(userData: Partial<User>) {
@@ -109,6 +110,10 @@ class ApiService {
 
   getUser() {
     return this.get<User>('/admin');
+  }
+
+  getAdmins(): Promise<Admin[]> {
+    return this.get(`/admin/admins`);
   }
 
   getUserDetailsById(userId: string) {
