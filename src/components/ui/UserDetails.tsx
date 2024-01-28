@@ -30,7 +30,6 @@ export default function UserDetails({
   size = 'large',
   showMessage,
   hideProfileSubtitle,
-  showViewProfile,
 }: Props) {
   const user = useSelector((state: RootState) => state.account.user);
   const chatLink = useMemo(() => {
@@ -50,7 +49,7 @@ export default function UserDetails({
           <div className="user-details-name">{userName}</div>
           {!hideProfileSubtitle && (
             <div className="profile-subtitle">
-              {profileSubtitle || '**************'}
+              {profileSubtitle || '----------------------------'}
             </div>
           )}
         </div>

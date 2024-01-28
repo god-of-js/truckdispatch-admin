@@ -15,17 +15,11 @@ const TransporterProfilePage = lazy(
   () => import('../pages/user/TransporterProfilePage'),
 );
 const AuthLayout = lazy(() => import('../layouts/AuthLayout'));
-const ProfileLayout = lazy(() => import('../layouts/ProfileLayout'));
 const TripLayout = lazy(() => import('../layouts/TripLayout'));
 const TripsLayout = lazy(() => import('../layouts/TripsLayout'));
 const ChatLayout = lazy(() => import('../layouts/ChatLayout'));
 
 // Auth
-const RegistrationPage = lazy(() => import('../pages/auth/RegistrationPage'));
-const VerifyPhonePage = lazy(() => import('../pages/auth/VerifyPhonePage'));
-const SelectUsertypePage = lazy(
-  () => import('../pages/auth/SelectUsertypePage'),
-);
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'));
 const ForgotPasswordPage = lazy(
   () => import('../pages/auth/ForgotPasswordPage'),
@@ -34,17 +28,6 @@ const ResetPasswordPage = lazy(() => import('../pages/auth/ResetPasswordPage'));
 
 const VerificationPage = lazy(
   () => import('../pages/verification/VerificationPage'),
-);
-
-// Profile
-const ProfileDetailsPage = lazy(
-  () => import('../pages/profile/ProfileDetailsPage'),
-);
-const ManagePasswordPage = lazy(
-  () => import('../pages/profile/ManagePasswordPage'),
-);
-const TransporterAccountsPage = lazy(
-  () => import('../pages/profile/TransporterAccountsPage'),
 );
 
 // DASHBOARD
@@ -56,6 +39,7 @@ const TransporterJobsPage = lazy(
   () => import('../pages/jobs/TransporterJobsPage'),
 );
 const ChatPage = lazy(() => import('../pages/chat/ChatPage'));
+const AdminsPage = lazy(() => import('../pages/admins/AdminsPage'));
 
 // VEHICLES
 const VehiclesPage = lazy(() => import('../pages/vehicles/VehiclesPage'));
@@ -80,26 +64,8 @@ const router = createBrowserRouter([
         element: <Navigate to="/my-trips" replace />,
       },
       {
-        path: '/profile',
-        id: 'Profile',
-        element: <ProfileLayout />,
-        children: [
-          {
-            path: '',
-            id: 'Profile Details',
-            element: <ProfileDetailsPage />,
-          },
-          {
-            path: '/profile/manage-password',
-            id: 'Manage Password',
-            element: <ManagePasswordPage />,
-          },
-          {
-            path: '/profile/accounts',
-            id: 'Accounts',
-            element: <TransporterAccountsPage />,
-          },
-        ],
+        path: '/admins',
+        element: <AdminsPage />,
       },
       {
         path: '/chat',
@@ -186,25 +152,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        path: 'join',
-        element: <SelectUsertypePage />,
-      },
-      {
-        path: 'join/:userType',
-        element: <RegistrationPage />,
-      },
-      {
-        path: 'verify-phone',
-        element: (
-          <ProtectedRoute
-            allowNavigationFunc={resetPasswordAccessChecks}
-            reRouteUrl="/auth/login"
-          >
-            <VerifyPhonePage />
-          </ProtectedRoute>
-        ),
-      },
       {
         path: 'login',
         element: <LoginPage />,

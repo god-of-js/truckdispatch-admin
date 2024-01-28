@@ -23,17 +23,18 @@ import ResetUserPassword from 'types/ResetUserPassword';
 import UserFullProfile from 'types/UserFullProfile';
 import Payment from 'types/Payment';
 import WithdrawalDetails from 'types/WithdrawalDetails';
+import Admin from 'types/Admin';
 
 class ApiService {
   createUser(userData: Partial<User>) {
     return this.post<{ smsData: TokenVerificationData; token: string }>(
-      '/auth/join',
+      '/admin/auth/join',
       userData,
     );
   }
 
   signInWithEmailAndPassword(data: { email: string; password: string }) {
-    return this.post<LoginResponse>('/auth/login', data);
+    return this.post<LoginResponse>('/admin/auth/login', data);
   }
 
   requestResetPasswordLink(data: { email: string }) {
@@ -108,7 +109,17 @@ class ApiService {
   }
 
   getUser() {
-    return this.get<User>('/user');
+    return this.get<User>('/admin');
+  }
+
+  createAdmin(data: Partial<Admin>): Promise<Admin> {
+    return this.post(`/admin`, data);
+  }
+  deleteAdmin(adminId: string) {
+    return this.delete(`/admin/${adminId}`);
+  }
+  getAdmins(): Promise<Admin[]> {
+    return this.get(`/admin/admins`);
   }
 
   getUserDetailsById(userId: string) {
