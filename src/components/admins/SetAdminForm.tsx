@@ -1,22 +1,28 @@
+import { createAdmin } from 'modules/Admins';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import Admin from 'types/Admin';
 import UiButton from 'ui/UiButton';
 import UiForm from 'ui/UiForm';
 import UiInput, { OnChangeParams } from 'ui/UiInput';
 import UiModal from 'ui/UiModal';
 import UiSelect from 'ui/UiSelect';
+import { toAnyAction } from 'utils/helpers';
 
 interface Props {
   isVisible: boolean;
   onClose: () => void;
 }
 export default function AdminForm({ isVisible, onClose }: Props) {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    type: '',
+    role: '' as Admin['role'],
   });
+  const [loading, setLoading] = useState(false);
   const roles = [
     {
       value: 'super-admin',
@@ -37,7 +43,18 @@ export default function AdminForm({ isVisible, onClose }: Props) {
       [name]: value,
     }));
   }
-  function createAdmin() {}
+
+  function addAdmin() {
+    setLoading(true);
+    dispatch(toAnyAction(createAdmin(formData)))
+      .then(() => {
+        onClose();
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
   return (
     <UiModal
       title="Add Admin"
@@ -45,7 +62,7 @@ export default function AdminForm({ isVisible, onClose }: Props) {
       size="sm"
       onClose={onClose}
     >
-      <UiForm formData={formData} onSubmit={createAdmin}>
+      <UiForm formData={formData} onSubmit={addAdmin}>
         {() => (
           <AdminFormStyling>
             <UiInput
@@ -69,11 +86,13 @@ export default function AdminForm({ isVisible, onClose }: Props) {
             <UiSelect
               label="Role"
               options={roles}
-              name="type"
-              value={formData.type}
+              name="role"
+              value={formData.role}
               onChange={handleChange}
             />
-            <UiButton isFullWidth>Create Admin</UiButton>
+            <UiButton isFullWidth loading={loading}>
+              Create Admin
+            </UiButton>
           </AdminFormStyling>
         )}
       </UiForm>

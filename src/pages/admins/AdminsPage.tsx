@@ -7,15 +7,14 @@ import UiButton from 'ui/UiButton';
 import UiIcon from 'ui/UiIcon';
 import UiTable from 'ui/UiTable';
 import { toAnyAction } from 'utils/helpers';
-import UserProfile from 'components/user/UserProfile';
 import UserDetails from 'ui/UserDetails';
-import AdminForm from 'components/admins/AdminForm';
+import SetAdminForm from 'components/admins/SetAdminForm';
 
 const DashboardTopNav = lazy(() => import('components/layout/DashboardTopNav'));
 
 export default function AdminsPage() {
   const dispatch = useDispatch();
-  const [isCreateAdminVisible, setIsCreateAdminVisible] = useState(true);
+  const [isSetAdminVisible, setIsSetAdminVisible] = useState(false);
 
   const admins = useSelector((state: RootState) => state.admins.admins);
 
@@ -32,10 +31,10 @@ export default function AdminsPage() {
     },
     {
       title: 'Role',
-      query: 'type',
+      query: 'role',
     },
     {
-      title: 'Joined',
+      title: 'Date Joined',
       query: 'createdAt',
     },
   ];
@@ -56,7 +55,7 @@ export default function AdminsPage() {
       <DashboardTopNav
         routeName="Admins"
         edgeNode={
-          <UiButton size="md" onClick={() => setIsCreateAdminVisible(true)}>
+          <UiButton size="md" onClick={() => setIsSetAdminVisible(true)}>
             <UiIcon icon="UserCircleAdd" /> <span>Add new Admin</span>
           </UiButton>
         }
@@ -64,9 +63,9 @@ export default function AdminsPage() {
       <AdminsPageStyling>
         <UiTable data={tableData} headers={headers} options={[]} />
       </AdminsPageStyling>
-      <AdminForm
-        isVisible={isCreateAdminVisible}
-        onClose={() => setIsCreateAdminVisible(false)}
+      <SetAdminForm
+        isVisible={isSetAdminVisible}
+        onClose={() => setIsSetAdminVisible(false)}
       />
     </div>
   );

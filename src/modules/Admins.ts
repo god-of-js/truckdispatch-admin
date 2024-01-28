@@ -17,10 +17,13 @@ export const adminsSlice = createSlice({
     setAdmins: (state: AdminsState, action: { payload: Admin[] }) => {
       state.admins = action.payload;
     },
+    setAdmin(state: AdminsState, action: { payload: Admin }) {
+      state.admins.push(action.payload);
+    },
   },
 });
 
-export const { setAdmins } = adminsSlice.actions;
+export const { setAdmins, setAdmin } = adminsSlice.actions;
 
 export default adminsSlice.reducer;
 
@@ -28,6 +31,13 @@ export function getAdmins() {
   return async (dispatch: AppDispatch) => {
     return Api.getAdmins().then((data) => {
       dispatch(setAdmins(data));
+    });
+  };
+}
+export function createAdmin(adminData: Partial<Admin>) {
+  return async (dispatch: AppDispatch) => {
+    return Api.createAdmin(adminData).then((data) => {
+      dispatch(setAdmin(data));
     });
   };
 }

@@ -112,6 +112,9 @@ class ApiService {
     return this.get<User>('/admin');
   }
 
+  createAdmin(data: Partial<Admin>): Promise<Admin> {
+    return this.post(`/admin`, data);
+  }
   getAdmins(): Promise<Admin[]> {
     return this.get(`/admin/admins`);
   }
