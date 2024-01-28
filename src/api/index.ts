@@ -115,6 +115,9 @@ class ApiService {
   createAdmin(data: Partial<Admin>): Promise<Admin> {
     return this.post(`/admin`, data);
   }
+  deleteAdmin(adminId: string) {
+    return this.delete(`/admin/${adminId}`);
+  }
   getAdmins(): Promise<Admin[]> {
     return this.get(`/admin/admins`);
   }

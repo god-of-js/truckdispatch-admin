@@ -20,10 +20,13 @@ export const adminsSlice = createSlice({
     setAdmin(state: AdminsState, action: { payload: Admin }) {
       state.admins.push(action.payload);
     },
+    removeAdmin(state: AdminsState, action: { payload: string }) {
+      state.admins = state.admins.filter(({ _id }) => _id !== action.payload);
+    },
   },
 });
 
-export const { setAdmins, setAdmin } = adminsSlice.actions;
+export const { removeAdmin, setAdmins, setAdmin } = adminsSlice.actions;
 
 export default adminsSlice.reducer;
 
@@ -38,6 +41,13 @@ export function createAdmin(adminData: Partial<Admin>) {
   return async (dispatch: AppDispatch) => {
     return Api.createAdmin(adminData).then((data) => {
       dispatch(setAdmin(data));
+    });
+  };
+}
+export function deleteAdmin(adminId: string) {
+  return async (dispatch: AppDispatch) => {
+    return Api.deleteAdmin(adminId).then((data) => {
+      dispatch(removeAdmin(adminId));
     });
   };
 }
