@@ -23,22 +23,24 @@ instance.interceptors.response.use(
     }
 
     const errorData = err.response && err.response.data;
-    if (errorData) {
-      const errorMessage = errorData.message;
-      if (
-        (errorMessage === 'jwt expired' ||
-          errorMessage === 'invalid signature' ||
-          errorMessage === 'No JWT was provided' ||
-          errorMessage === 'User does not exist' ||
-          errorMessage === 'Invalid JWT') &&
-        !isRedirecting
-      ) {
-        isRedirecting = true;
-        removeUserSessionId();
-        window.location.href = '/auth/login';
-        window.location.reload();
-      }
-    }
+
+    // if (errorData) {
+    //   const errorMessage = errorData.message;
+    //   if (
+    //     (errorMessage === 'jwt expired' ||
+    //       errorMessage === 'invalid signature' ||
+    //       errorMessage === 'No JWT was provided' ||
+    //       errorMessage === 'User does not exist' ||
+    //       // errorMessage === 'Admin does not exist' ||
+    //       errorMessage === 'Invalid JWT') &&
+    //     !isRedirecting
+    //   ) {
+    //     isRedirecting = true;
+    //     removeUserSessionId();
+    //     window.location.href = '/auth/login';
+    //     window.location.reload();
+    //   }
+    // }
     return Promise.reject(err);
   },
 );

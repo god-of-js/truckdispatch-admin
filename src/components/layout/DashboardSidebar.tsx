@@ -31,7 +31,7 @@ export default function DashboardSidebar() {
 
   const routes = useMemo(() => {
     if (!user) return [];
-
+    // TODO: filter routes about to user admin levels
     return user?.userType === 'transporter' ? transporterRoutes : shipperRoutes;
   }, [user]);
 
@@ -95,19 +95,6 @@ export default function DashboardSidebar() {
                 </li>
               </Link>
             ))}
-            <Link to="/chat" onClick={closeIsMobileExpandedIfOpen}>
-              <li className={isRouteActive('/chat') ? 'active' : ''}>
-                <div className="list-item-content">
-                  <UiIcon icon="Chat" size="24" />{' '}
-                  <span className="hide-in-unexpanded-large-screen">Chat</span>
-                </div>
-                {isRouteActive('/chat') && (
-                  <div className="hide-in-large-screen">
-                    <UiIcon icon="Tick" />
-                  </div>
-                )}
-              </li>
-            </Link>
           </ul>
 
           <div className="bottom-actions">
