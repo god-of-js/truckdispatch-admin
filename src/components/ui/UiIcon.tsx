@@ -19,6 +19,11 @@ const icons = {
       default: module.ReactComponent,
     })),
   ),
+  BlogText: lazy(() =>
+    import('./icons/blog-text.svg').then((module) => ({
+      default: module.ReactComponent,
+    })),
+  ),
   Card: lazy(() =>
     import('./icons/card.svg').then((module) => ({
       default: module.ReactComponent,
@@ -202,6 +207,11 @@ const icons = {
   ),
   MagicStar: lazy(() =>
     import('./icons/magic-star.svg').then((module) => ({
+      default: module.ReactComponent,
+    })),
+  ),
+  MailList: lazy(() =>
+    import('./icons/mail-list.svg').then((module) => ({
       default: module.ReactComponent,
     })),
   ),

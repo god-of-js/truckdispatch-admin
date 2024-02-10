@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import { ProtectedRoute } from './ProtectedRoute';
 
 const PageError = lazy(() => import('../components/errors/PageError'));
@@ -44,10 +44,17 @@ const AdminsPage = lazy(() => import('../pages/admins/AdminsPage'));
 // VEHICLES
 const VehiclesPage = lazy(() => import('../pages/vehicles/VehiclesPage'));
 
+// Blog
+
+const BlogsPage = lazy(() => import('../pages/blogs/BlogsPage'));
+const SetBlogsPage = lazy(() => import('../pages/blogs/SetBlogsPage'));
+
 // Transactions
 const PaymentsPage = lazy(() => import('../pages/payments/PaymentsPage'));
 const WalletPage = lazy(() => import('../pages/payments/WalletPage'));
+
 const sessionId = getUserSessionId();
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -66,6 +73,20 @@ const router = createBrowserRouter([
       {
         path: '/admins',
         element: <AdminsPage />,
+      },
+      {
+        path: '/blogs',
+        element: <Outlet />,
+        children: [
+          {
+            path: '',
+            element: <BlogsPage />,
+          },
+          {
+            path: 'set/:blogId?',
+            element: <SetBlogsPage />,
+          },
+        ],
       },
       {
         path: '/chat',
